@@ -1,0 +1,40 @@
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamercolorthemeXDUstyle}[2015/12/27 v0.0.1 The XDUstyle Beamer Theme]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theme options and definitions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%theme options
+\DeclareOptionBeamer{xdred}{\def\beamer@xducolor{xdred}}%缺省默认
+\DeclareOptionBeamer{xdblue}{\def\beamer@xducolor{xdblue}}
+\DeclareOptionBeamer{sidebar}{\def\beamer@xdusidebar{true}}%缺省无
+\ProcessOptionsBeamer
+
+\def\beamer@xducolorblue{xdblue}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%beamer specific options
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mode<presentation>%refers to the first four modes (beamer,handout,second and trans). That is, to all modes except the article mode
+{
+  \ifx\beamer@xducolor\beamer@xducolorblue%
+    \definecolor{beamer@barcolor}{RGB}{38,81,107}% 冷色系辅助色
+    \definecolor{beamer@headercolor}{RGB}{0,65,130}% xdblue
+    \definecolor{beamer@normaltextcolor}{RGB}{0,0,0}% balck
+  \else%
+    \definecolor{beamer@barcolor}{RGB}{180,76,76}% 暖色系辅助色
+    \definecolor{beamer@headercolor}{RGB}{175,33,37}% xdred
+    \definecolor{beamer@normaltextcolor}{RGB}{0,0,0}% black
+  \fi%
+  
+  \setbeamercolor{structure}{fg=beamer@headercolor}
+  \setbeamercolor{normal text}{fg=beamer@normaltextcolor,bg=white}
+  \setbeamercolor{frametitle}{fg=white,bg=beamer@headercolor}
+  \ifx\beamer@xdusidebar\undefined%
+    {}%
+  \else%
+    \setbeamercolor{XDUsidebar}{fg=gray!50,bg=white}%
+  \fi%
+}%end of beamer specific options
+
+\mode<all>

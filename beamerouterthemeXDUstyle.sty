@@ -1,0 +1,283 @@
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerouterthemeXDUstyle}[2015/12/27 v0.0.1 The XDUstyle Beamer Theme]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Load required packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{tikz}
+\usetikzlibrary{external}
+\RequirePackage{calc}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theme options and definitions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%theme options
+\newlength{\beamer@width}
+\setlength{\beamer@width}{2cm}
+\DeclareOptionBeamer{width}{\beamer@width=#1}
+\DeclareOptionBeamer{sidebar}{\def\beamer@sidebar{true}}
+\DeclareOptionBeamer{hideothersubsections}[]{\beamer@nav@subsectionstyle{show/show/hide}}
+\DeclareOptionBeamer{hideallsubsections}[]{\beamer@nav@subsectionstyle{hide}}
+\DeclareOptionBeamer{hidetitle}{\def\beamer@hidetitle{true}}
+\DeclareOptionBeamer{hideauthor}{\def\beamer@hideauthor{true}}
+\DeclareOptionBeamer{hideinstitute}{\def\beamer@hideinst{true}}
+\DeclareOptionBeamer{shownavsym}{\def\beamer@shownavsym{true}}
+\DeclareOptionBeamer{xdred}{\def\beamer@xducolor{xdred}}
+\DeclareOptionBeamer{xdblue}{\def\beamer@xducolor{xdblue}}
+\DeclareOptionBeamer{sidebar}{\def\beamer@sidebar{true}}
+\ProcessOptionsBeamer
+
+\def\beamer@xducolorblue{xdblue}
+%the height of the header is 1.8 times the lineheight of the frame title
+\newlength{\beamer@height}
+\usebeamerfont{frametitle} %use the frame title font
+\setlength{\beamer@height}{1.8\baselineskip} 
+\reset@font %reset fonts
+%width of vertical bar separating the main text from the sidebar
+\newlength{\beamer@barwidth}
+\setlength{\beamer@barwidth}{2\beamer@height/15} %the bar width depends on the header height (by a factor of 7.5)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%beamer specific options
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mode<presentation>%refers to the first four modes (beamer,handout,second and trans). That is, to all modes except the article mode
+{
+  \ifx\beamer@sidebar\undefined%
+    {}
+  \else%
+    \ifbeamercolorempty[fg]{XDUsidebar}{%
+      %define the sidebar color if it is not defined (which may be due to that the XDUsidebar color theme is not loaded)
+      \setbeamercolor{XDUsidebar}{use={structure,palette sidebar primary},fg=palette sidebar primary.fg,bg=structure.fg}
+    }{%
+      %
+    }
+  \setbeamersize{sidebar width left=\beamer@width}
+  \setbeamersize{text margin left=0.5cm,text margin right=0.5cm}
+  \fi%
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %templates
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  %headline
+  \defbeamertemplate*{headline}{XDUstyle theme}{%
+    \XDUheaderbackground%
+  }
+  
+  %frame title
+  \defbeamertemplate*{frametitle}{XDUstyle theme}{%
+    \begin{minipage}[c][\beamer@height][c]{\textwidth-\beamer@height/2}
+	\begin{flushright}
+      {\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\insertframetitle\par}%
+      {\usebeamercolor[fg]{framesubtitle}\usebeamerfont{framesubtitle}\insertframesubtitle\par}%
+	\end{flushright}
+    \end{minipage}
+	\hfill%
+  }
+ 
+\ifx\beamer@sidebar\undefined%
+  {}
+\else% 
+  %sidebar
+  \defbeamertemplate*{sidebar left}{XDUstyle theme}{%
+    \XDUsidebarbackground%
+    \vspace{\beamer@height}%
+    \vspace{2\baselineskip}\par%
+    \ifx\beamer@hidetitle\undefined% insert short title
+      \vspace{-\baselineskip}
+      \hspace{0.05\beamer@width}%
+      {% 
+        \usebeamercolor[fg]{title in sidebar}
+        \usebeamerfont{title in sidebar}%
+        \insertshorttitle[width={0.9\beamer@width},center,respectlinebreaks]
+      }%
+      \hspace{0.05\beamer@width}
+      \vspace{2\baselineskip}\par%
+    \fi
+    \ifx\beamer@hideauthor\undefined% insert short author
+      \vspace{-\baselineskip}
+      \hspace{0.05\beamer@width}%
+      {%
+        \usebeamercolor[fg]{author in sidebar}
+        \usebeamerfont{author in sidebar}%
+        \insertshortauthor[width={0.9\beamer@width},center,respectlinebreaks]
+      }
+      \hspace{0.05\beamer@width}
+      \vspace{\baselineskip}\par%
+    \fi
+    \insertverticalnavigation{\beamer@width}%
+    \strut\vfill%
+    \ifx\beamer@hideinst\undefined% insert short institute
+      \vbox{\hspace{0.05\beamer@width}%
+      {%
+        \usebeamercolor[fg]{title in sidebar}
+        \usebeamerfont{subtitle in sidebar}%
+        \insertshortinstitute[width={0.9\beamer@width},center,respectlinebreaks]
+      }
+      \hspace{0.05\beamer@width}%
+      \vspace*{\baselineskip}
+      }%
+    \fi
+    \ifx\beamer@shownavsym\undefined% insert navigation symbols
+      %do nothing
+    \else
+      %
+    \fi
+  }
+  
+  % current section in the sidebar
+  \defbeamertemplate*{section in sidebar}{XDUstyle theme}{%
+    \vbox{%
+      \vskip1ex% add some extra space when inserting a new section
+      \sidebarnavitem{4pt}{section in sidebar}{%
+        \sidebarcurframe{\insertframenumber}%
+        \insertsectionhead
+      }
+    }
+  }
+
+  % all section in the sidebar but the current
+  \defbeamertemplate*{section in sidebar shaded}{XDUstyle theme}{%
+    \vbox{%
+      \vskip1ex% add some extra space when inserting a new section
+      \sidebarnavitem{4pt}{section in sidebar shaded}{\insertsectionhead}
+    }
+  }
+
+  % current subsection in the sidebar
+  \defbeamertemplate*{subsection in sidebar}{XDUstyle theme}{%
+    \sidebarnavitem{6pt}{subsection in sidebar}{
+      \sidebarcurframe{\insertframenumber}%
+      \insertsubsectionhead
+    }
+  }
+
+  % all subsection in the sidebar but the current
+  \defbeamertemplate*{subsection in sidebar shaded}{XDUstyle theme}{%
+    \sidebarnavitem{6pt}{subsection in sidebar shaded}{\insertsubsectionhead}
+  }
+
+  % current subsubsection in the sidebar
+  \defbeamertemplate*{subsubsection in sidebar}{XDUstyle theme}{%
+    \sidebarnavitem{8pt}{subsubsection in sidebar}{
+      \sidebarcurframe{\insertframenumber}%
+      \insertsubsubsectionhead
+    }  
+  }
+
+  % all subsubsection in the sidebar but the current
+  \defbeamertemplate*{subsubsection in sidebar shaded}{XDUstyle theme}{%
+    \sidebarnavitem{8pt}{subsubsection in sidebar shaded}{\insertsubsubsectionhead} 
+  }
+\fi%
+
+  \ifx\beamer@shownavsym\undefined% insert navigation symbols
+    \setbeamertemplate{navigation symbols}{%
+      %disable navigation symbols
+    }
+  \fi
+
+}%end of beamer specific options
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Macros used in the theme 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% the fancy header background
+\newcommand{\XDUheaderbackground}[0]{%
+  \tikzexternaldisable
+  \begin{tikzpicture}[overlay]
+    
+  
+    \coordinate (UC) at (\paperwidth,0); %upper right corner of the slide
+    \coordinate (LC) at (3ex+3.4cm,-\paperheight); %lower left corner of the slide
+    \coordinate (BS) at (\paperwidth,-\beamer@height+1ex); %start coordinate of the bar
+    \coordinate (BE) at (\beamer@width+\beamer@barwidth/2,-\paperheight); %end coordinate of the bar
+	\coordinate (BF) at (3ex+3.4cm,-\beamer@height);
+
+    \coordinate (IS) at (BS -| BE); %intersection
+	
+	\coordinate (XDL1) at (0,0);
+	\coordinate (XDR1) at (4ex,-\beamer@height/9);
+	\coordinate (XDL2) at (0,-2\beamer@height/9);
+	\coordinate (XDR2) at (4ex,-3\beamer@height/9);
+	\coordinate (XDL3) at (0,-4\beamer@height/9);
+	\coordinate (XDR3) at (4ex,-5\beamer@height/9);
+	\coordinate (XDL4) at (0,-6\beamer@height/9);
+	\coordinate (XDR4) at (4ex,-7\beamer@height/9);
+	\coordinate (XDL5) at (0,-8\beamer@height/9);
+	\coordinate (XDR5) at (4ex,-\beamer@height);
+	
+	\fill[gray!50] (BF) rectangle (BS);
+    {\usebeamercolor{frametitle}%
+      \draw[draw=none,fill=frametitle.bg] (UC) rectangle (IS -| LC);
+      \draw[draw=none,fill=frametitle.bg] (XDL1) rectangle (XDR1);
+	  \draw[draw=none,fill=frametitle.bg] (XDL2) rectangle (XDR2);
+	  \draw[draw=none,fill=frametitle.bg] (XDL3) rectangle (XDR3);
+	  \draw[draw=none,fill=frametitle.bg] (XDL4) rectangle (XDR4);
+	  \draw[draw=none,fill=frametitle.bg] (XDL5) rectangle (XDR5);
+    }
+    
+    \coordinate (logopos) at ([yshift=\beamer@height/2] IS);%coordinate of the logo
+	\ifx\beamer@xducolor\beamer@xducolorblue%
+      \node at (logopos) {\includegraphics[width=3cm]{XDUtheme/logo_xdblue}};
+	\else%
+      \node at (logopos) {\includegraphics[width=3cm]{XDUtheme/logo_xdred}};
+	\fi%
+  \end{tikzpicture}%
+  \tikzexternalenable
+}
+
+\ifx\beamer@sidebar\undefined%
+  {}
+\else
+  % the fancy background in the sidebar
+  \newcommand{\XDUsidebarbackground}[0]{%
+    \tikzexternaldisable
+    \begin{tikzpicture}[remember picture,overlay]
+      \coordinate (BS) at (\paperwidth,-\beamer@height); %start coordinate of the bar
+	  \coordinate (DBS) at (\paperwidth,-\beamer@height-6.5ex);
+      \coordinate (BE) at (\beamer@width+\beamer@barwidth/2,-\paperheight); %end coordinate of the bar
+      \coordinate (IS) at (BS -| BE); %intersection
+	  \coordinate (DIS) at (DBS -| BE);
+      %draw the thick line
+      {\usebeamercolor{XDUsidebar}%
+        \draw[color=fg,line width=\beamer@barwidth] (IS) -- (BE);
+      }
+      %draw the circle with the total frame number
+      {\usebeamercolor{palette sidebar primary}%
+        \usebeamercolor{XDUsidebar}%
+        \usebeamerfont{subsection in sidebar}%
+        \node[fill=palette sidebar primary.bg,draw=XDUsidebar.fg,circle,very thick,minimum width=4mm] at ([yshift=2mm] BE) {{\usebeamercolor[fg]{subsection in sidebar}\inserttotalframenumber}};
+		\node[fill=palette sidebar primary.bg,draw=XDUsidebar.fg,circle,very thick,minimum width=4mm] at ([yshift=2mm] DIS) {{\usebeamercolor[fg]{subsection in sidebar}1}};
+      }
+    \end{tikzpicture}%
+    \tikzexternalenable
+  }
+  
+  % sidebar navigation item  
+  \newcommand{\sidebarnavitem}[3]{%
+    \begin{beamercolorbox}[wd=\beamer@width,leftskip=#1,rightskip=1ex plus1fil,vmode]{#2}
+      \vbox{}% insert a blank line
+      #3\par%
+      \vbox{}% insert a blank line
+      \vskip-1.5ex%
+    \end{beamercolorbox}
+  }
+  
+  % current frame number
+  \newcommand{\sidebarcurframe}[1]{%
+    \tikzexternaldisable
+    \begin{tikzpicture}[remember picture,overlay]
+    \coordinate (CS) at (0,0.8ex); % coordinate of the current section
+    \coordinate (CF) at (IS |- CS); % coordinate of the current frame number
+    {%
+      \usebeamercolor{palette sidebar primary}%
+      \usebeamercolor{XDUsidebar}%
+  %    \draw[color=bg,line width=\beamer@barwidth] (IS) -| (CF);
+      \node[fill=palette sidebar primary.bg,draw=XDUsidebar.fg,circle,minimum width=3.5mm,thick] at (CF) {{\fontsize{4}{5}\selectfont{\usebeamercolor[fg]{subsection in sidebar}#1}}};
+    }
+    \end{tikzpicture}%
+    \tikzexternalenable
+  }
+\fi%
+
+\mode<all>

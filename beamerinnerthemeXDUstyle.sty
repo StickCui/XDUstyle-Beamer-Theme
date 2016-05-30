@@ -1,0 +1,157 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerinnerthemeXDUstyle}[2015/12/27 v0.0.1 The XDUstyle Beamer Theme]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theme options and definitions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{tikz}
+\usetikzlibrary{external}
+%%%theme options
+\DeclareOptionBeamer{xdred}{\def\beamer@xducolor{xdred}}
+\DeclareOptionBeamer{xdblue}{\def\beamer@xducolor{xdblue}}
+\DeclareOptionBeamer{sidebar}{\def\beamer@sidebar{true}}
+\DeclareOptionBeamer{english}{\def\beamer@english{true}}
+\ProcessOptionsBeamer
+
+\newlength{\beamer@plainpagewidth}
+\def\beamer@xducolorblue{xdblue}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%beamer specific options
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mode<presentation>%refers to the first four modes (beamer,handout,second and trans). That is, to all modes except the article mode
+{
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %templates
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %title page
+  \setbeamertemplate{title page}{%
+	{}\vspace*{\baselineskip}
+    \ifx\beamer@sidebar\undefined%
+      \setlength{\beamer@plainpagewidth}{\textwidth}
+    \else%
+      \setlength{\beamer@plainpagewidth}{\textwidth+\beamer@leftsidebar}%
+      \hskip-\beamer@leftsidebar%
+    \fi%
+    \begin{minipage}[c][\textheight][c]{\beamer@plainpagewidth}
+	  \ifx\beamer@xducolor\beamer@xducolorblue%
+	    \includegraphics[width=4cm]{XDUtheme/logo_xdblue}%
+	  \else%
+	    \includegraphics[width=4cm]{XDUtheme/logo_xdred}%
+	  \fi%
+      \vfill
+      \centering
+      {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}
+
+      {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle}\vspace*{\baselineskip}
+
+      \begin{beamercolorbox}[wd=\beamer@plainpagewidth,center,sep=\baselineskip]{frametitle}%
+        {\usebeamerfont{author}\insertauthor}\vspace*{\baselineskip}
+        
+        {\usebeamerfont{institute}\insertinstitute}\vspace*{\baselineskip}
+		
+		{\usebeamerfont{date}\insertdate}\vspace*{\baselineskip}
+      \end{beamercolorbox}\vspace*{\baselineskip}
+	  \vfill
+	  {}\vspace*{\baselineskip}
+    \end{minipage}
+  }
+ 
+  %final page
+  \defbeamertemplate{final page}{text}[1]{%
+    {}\vspace*{\baselineskip}
+    \ifx\beamer@sidebar\undefined%
+      \setlength{\beamer@plainpagewidth}{\textwidth}
+    \else%
+      \setlength{\beamer@plainpagewidth}{\textwidth+\beamer@leftsidebar}%
+      \hskip-\beamer@leftsidebar%
+    \fi%
+    \begin{minipage}[c][\textheight][c]{\beamer@plainpagewidth}
+	\ifx\beamer@xducolor\beamer@xducolorblue%
+	    \includegraphics[width=4cm]{XDUtheme/logo_xdblue}%
+	  \else%
+	    \includegraphics[width=4cm]{XDUtheme/logo_xdred}%
+	  \fi%
+	  \vfill
+      \centering
+	  \vspace*{-2\baselineskip}
+      \begin{beamercolorbox}[wd=\textwidth,center,sep=2\baselineskip]{frametitle}
+        #1
+      \end{beamercolorbox}
+      \vfill
+      {}\vspace*{\baselineskip}
+    \end{minipage}
+  }
+  \newcommand{\finalpage}[1]{%
+    \setbeamertemplate{final page}[text]{#1}
+    \usebeamertemplate{final page}
+  }
+  
+  \newcommand{\xdbg}{
+    \setbeamertemplate{background}{% 设置背景
+      \tikzexternaldisable
+      \begin{tikzpicture}[overlay]
+        \fill[structure.fg] (0,-\paperheight+3ex) rectangle (2ex,-\paperheight+4ex);
+        \fill[structure.fg] (0ex,-\paperheight+5ex) rectangle (2ex,-\paperheight+6ex);
+        \fill[structure.fg] (0ex,-\paperheight+7ex) rectangle (2ex,-\paperheight+8ex);
+        \fill[structure.fg] (0ex,-\paperheight+9ex) rectangle (2ex,-\paperheight+10ex);
+        \fill[structure.fg] (0ex,-\paperheight+11ex) rectangle (2ex,-\paperheight+12ex);
+        \end{tikzpicture}%
+      \tikzexternalenable
+      }
+	}
+  
+  % use numbers instead of a picture for the references
+  \setbeamertemplate{bibliography item}[text]
+  \setbeamertemplate{caption}[numbered]
+  \setbeamercovered{transparent}
+  \ifx\beamer@english\undefined%
+    \renewcommand{\figurename}{图}
+    \renewcommand{\tablename}{表}
+    \renewcommand\refname{参考文献}
+  \fi%
+  
+  %part page
+  \AtBeginPart{{\xdbg\frame[plain,noframenumbering]{%
+    {}\vspace*{\baselineskip}%
+	\ifx\beamer@sidebar\undefined%
+      \ifx\beamer@xducolor\beamer@xducolorblue%
+       \includegraphics[width=4cm]{XDUtheme/logo_xdblue}%
+      \else%
+       \includegraphics[width=4cm]{XDUtheme/logo_xdred}%
+  	  \fi%
+      \vspace*{-3\baselineskip}%
+      \partpage
+    \else%
+      \hskip-1.6\beamer@height%
+      \ifx\beamer@xducolor\beamer@xducolorblue%
+       \includegraphics[width=4cm]{XDUtheme/logo_xdblue}%
+      \else%
+       \includegraphics[width=4cm]{XDUtheme/logo_xdred}%
+  	  \fi%
+      \vspace*{-3\baselineskip}%
+      \hskip-1.6\beamer@height%
+      \partpage
+    \fi%
+   }}} %adds a plain part page as defined below
+  \defbeamertemplate*{part page}{sidebar theme}{%
+     \ifx\beamer@sidebar\undefined%
+      \setlength{\beamer@plainpagewidth}{\textwidth}
+    \else%
+      \setlength{\beamer@plainpagewidth}{\textwidth+\beamer@leftsidebar}%
+      \hskip-\beamer@leftsidebar%
+    \fi%
+    \begin{minipage}[c][\textheight][c]{\beamer@plainpagewidth}
+      \centering
+	  \ifx\beamer@english\undefined%
+        {\usebeamerfont{title}\usebeamercolor[fg]{author}{第 \Roman{part} 部分}}\vspace*{\baselineskip}
+	  \else%
+        {\usebeamerfont{title}\usebeamercolor[fg]{author}{Part \Roman{part}}}\vspace*{\baselineskip}
+      \fi%
+
+      {\usebeamerfont{title}\usebeamercolor[fg]{title}{\insertpart}}
+    \end{minipage}
+  }
+
+}%end of beamer specific options
+
+\mode<all>

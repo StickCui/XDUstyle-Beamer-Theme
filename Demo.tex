@@ -1,0 +1,38 @@
+%!TEX program = xelatex
+\documentclass[10pt,mathserif]{beamer}%,aspectratio=169 %画面比例16:9%
+
+\usepackage{xeCJK}
+\usetheme[
+ sidebar, % 会在每页左侧加上导航栏，参考 The AAU Sidebar Beamer Theme 设置
+% xdblue, % 不选会默认西电红色调，选上会将主题设置为西电蓝色调
+% english % 选上，会将图表等标题还原回英文标题
+ ]{XDUstyle}
+
+
+\title{标题}
+\subtitle{子标题}
+\institute[西安电子科技大学\\数学与统计学院]{西安电子科技大学数学与统计学院12级本科生} % 中括号部分为导航栏底所用尽可能精简
+\author{崔元顺}
+\date{\today}% 时间可自行设置
+	
+\begin{document}%
+{\xdbg \frame[plain,noframenumbering]{\titlepage}}%首页标题页
+
+\part{测试部分}
+
+\section{大标题}
+\begin{frame}{大标题}{副标题}
+	测试页
+\end{frame}
+
+\subsection{子标题}
+\begin{frame}{子标题}{副标题}
+	测试页
+\end{frame}
+
+{\xdbg%末页致谢
+\begin{frame}[plain,noframenumbering]
+ \finalpage{{\huge 感谢观看！}}
+\end{frame}}
+
+\end{document} 
