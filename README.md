@@ -7,8 +7,7 @@ Xidian University Style Beamer Theme
 本主题参考西安电子科技大学VI系统而写，写作过程借鉴了 The AAU Sidebar Beamer Theme.
 
 ## 主题介绍
-
-时间仓促，没来得及将主题文件进行整理，暂时将原始的零散文件进行托管。
+终于抽出了时间，将该项目整理了一下，希望之前 Fork 过本项目的同学更新一下，这次比之前的正规了许多，更加便于维护了。
 
 ### 参数设置
 
@@ -20,9 +19,47 @@ Xidian University Style Beamer Theme
 	xdblue % 将主题配色改为西电蓝风格
 	english % 图表等标题为英文
 
+## 使用方法
+
+### Windows用户
+
+> 为方便 Windows 用户，专门写好了两种编译脚本；还有示例可供学习使用。
+
+**使用前，请仔细阅读 XDUstyle.pdf 主题用户手册！**
+
+`MakeThemeManual.bat` 脚本，生成主题和用户手册
+
+`MakeDemo.bat` 脚本，生成示例 Beamer 文件预览
+
+`Clean.bat` 脚本，清理编译过程的中间文件
+
+### Linux/Mac用户
+
+#### 生成模板和用户说明手册
+
+```bash
+$ make thememanual
+```
+
+#### 生成示例
+
+使用`XeLaTeX`编译示例文档:
+
+```bash
+$ make xelatex
+```
+
+#### 清理文件夹
+
+```bash
+$ make clean
+```
+
 ### 文件（夹）介绍
 
-	主题主要文件：
+	用户手册：XDUstyle.pdf
+
+	主题主要文件（需编译生成）：
 	|--------- beamerthemeXDUstyle.sty % 主题文件
 	|--------- beamerouterthemeXDUstyle.sty % 外部主题
 	|--------- beamerinnerthemeXDUstyle.sty % 内部主题
@@ -30,7 +67,7 @@ Xidian University Style Beamer Theme
 
 	示例文件：
 	|------- Demo.tex
-	|------- Demo.pdf
+	|------- Demo.pdf（需编译生成）
 
 	文件夹：
 	|----- XDUtheme % 主题用到的矢量图文件夹

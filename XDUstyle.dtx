@@ -1,0 +1,922 @@
+% \iffalse meta-comment
+% !TeX program  = XeLaTeX
+% !TeX encoding = UTF-8
+% 
+% Copyright (C) 2015--2016 by Stick Cui <Stick_Cui@163.com>
+% 
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3c
+% of this license or (at your option) any later version.
+% The latest version of this license is in:
+%
+% http://www.latex-project.org/lppl.txt
+%
+% and version 1.3c or later is part of all distributions of LaTeX
+% version 2008/05/04 or later.
+
+%<*internal>
+\def\nameofplainTeX{plain}
+\ifx\fmtname\nameofplainTeX\else
+  \expandafter\begingroup
+\fi
+%</internal>
+%<*install>
+
+\input docstrip
+\keepsilent
+\askforoverwritefalse
+\preamble
+
+This is a generated file.
+
+Copyright (C) 2015--\the\year by Stick Cui <Stick_Cui@163.com>
+
+This file may be distributed and/or modified under the
+conditions of the LaTeX Project Public License, either version 1.3c
+of this license or (at your option) any later version.
+The latest version of this license is in:
+
+http://www.latex-project.org/lppl.txt
+
+and version 1.3c or later is part of all distributions of LaTeX
+version 2008/05/04 or later.
+
+To produce the documentation run the original source files ending with `.dtx'
+through LaTeX.
+
+\endpreamble
+\postamble
+
+This package consists of the file  XDUstyle.dtx,
+             and the derived files XDUstyle.pdf,
+                                   beamerthemeXDUstyle.sty,
+                                   beamercolorthemeXDUstyle.sty,
+                                   beamerinnerthemeXDUstyle.sty,
+                                   beamerouterthemeXDUstyle.sty.				 
+
+\endpostamble
+
+\usedir{tex/latex/XDUstyle}
+\generate
+  {
+    \file{beamerthemeXDUstyle.sty}{\from{\jobname.dtx}{xdustyle}}
+	\file{beamercolorthemeXDUstyle.sty}{\from{\jobname.dtx}{xducolorstyle}}
+	\file{beamerinnerthemeXDUstyle.sty}{\from{\jobname.dtx}{xduinnerstyle}}
+	\file{beamerouterthemeXDUstyle.sty}{\from{\jobname.dtx}{xduouterstyle}}
+  }
+
+\Msg{***********************************************************}
+\Msg{*}
+\Msg{* To finish the installation you have to move the following}
+\Msg{* files into a directory searched by TeX:}
+\Msg{*}
+\Msg{* The recommended directory is TEXMF/tex/latex/XDUstyle}
+\Msg{*}
+\Msg{* \space\space beamerthemeXDUstyle.sty}
+\Msg{* \space\space beamercolorthemeXDUstyle.sty}
+\Msg{* \space\space beamerinnerthemeXDUstyle.sty}
+\Msg{* \space\space beamerouterthemeXDUstyle.sty}
+\Msg{*}
+\Msg{* To produce the documentation run the files ending with}
+\Msg{* `.dtx' through LaTeX.}
+\Msg{*}
+\Msg{* Happy TeXing!}
+\Msg{***********************************************************}
+
+%</install>
+%<install>\endbatchfile
+%<*internal>
+
+\usedir{tex/latex/XDUstyle}
+\generate
+  {
+	\file{\jobname.ins}{\from{\jobname.dtx}{install}}
+  }
+\nopreamble\nopostamble
+
+\ifx\fmtname\nameofplainTeX
+  \expandafter\endbatchfile
+\else
+  \expandafter\endgroup
+\fi
+%</internal>
+%<xdustyle|xducolorstyle|xduinnerstyle|xduouterstyle>\NeedsTeXFormat{LaTeX2e}
+%<xdustyle>\ProvidesPackage{beamerthemeXDUstyle}
+%<xducolorstyle>\ProvidesPackage{beamercolorthemeXDUstyle}
+%<xduinnerstyle>\ProvidesPackage{beamerinnerthemeXDUstyle}
+%<xduouterstyle>\ProvidesPackage{beamerouterthemeXDUstyle}
+%<xdustyle|xducolorstyle|xduinnerstyle|xduouterstyle>[2015/12/27 v0.0.1 The Xidian University Style Beamer Theme]
+%<*driver>
+\ProvidesFile{XDUstyle.dtx}[2015/12/27 v0.0.1 The Xidian University Style Beamer Theme]
+\documentclass[10pt]{ltxdoc}
+
+\usepackage[left=4cm,right=3cm,top=3cm,bottom=2cm]{geometry}
+\usepackage[SlantFont,BoldFont,CJKchecksingle]{xeCJK}
+\usepackage{indentfirst}
+\setlength{\parindent}{2em}
+\usepackage[toc,page,title,titletoc,header]{appendix}
+\usepackage{longtable,multirow,hhline,tabularx,array,makecell,booktabs,diagbox}
+\usepackage{metalogo,xcolor}
+\usepackage{pst-barcode}%二维码
+\usepackage{fancyvrb,CJKfntef}
+\usepackage[bookmarks=true,%
+    linkcolor=black,%
+    citecolor=black,%
+    unicode=true,%
+    colorlinks=true,%
+    pdfborder=001,%
+    linkcolor=black,%
+    citecolor=black,%
+    urlcolor=black,
+    bookmarksnumbered=true%标签显示章节编号
+]{hyperref}
+\def\XDUstyle{X\kern -.1667em\lower .5ex\hbox {D}\kern -.125emU\textit{style}{}}
+
+\renewcommand{\abstractname}{摘\quad 要}
+\renewcommand{\contentsname}{目\quad 录}
+\renewcommand{\appendixname}{附\quad 录}
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+\renewcommand\refname{参考文献}
+\renewcommand{\indexname}{索\quad 引}
+\def\pkg#1{\texttt{#1}}
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{15pt}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\thepage}
+\renewcommand\headrulewidth{0.5pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{headings}{
+\fancyhf{}
+\fancyhead[C]{\contentsname}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0pt}}
+\pagestyle{fancy}
+
+\newfontfamily\CouNew{Courier New}
+\def\codebasicfont{\fontfamily{Courier New}\selectfont}
+
+\DefineVerbatimEnvironment{example}{Verbatim}%
+  {frame=single,framerule=0.3mm,rulecolor=\color{red!70!green!20!blue!20},%
+   fillcolor=\color{red!75!green!50!blue!15},framesep=0.5mm,baselinestretch=1.2,%
+   fontsize=\small,gobble=1}
+\DefineVerbatimEnvironment{shell}{Verbatim}%
+  {frame=single,framerule=0.3mm,rulecolor=\color{red!0!green!25!blue!51},%
+   fillcolor=\color{red!20!green!20!blue!50},framesep=0.5mm,fontsize=\small,gobble=1}
+
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+
+\begin{document}
+  \DocInput{\jobname.dtx}
+  \PrintChanges
+  \PrintIndex
+\end{document}
+%</driver>
+% 
+% \fi
+%
+% \CheckSum{611}
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+% \GetFileInfo{\jobname.dtx}
+% 
+% \changes{v0.0.1}{2015/12/27}{Finish the Xidian University Style Beamer Theme initially.}
+%
+% \DoNotIndex{\begin,\end,\begingroup,\endgroup}
+% \DoNotIndex{\ifx,\ifdim,\ifnum,\ifcase,\else,\or,\fi}
+% \DoNotIndex{\let,\def,\xdef,\newcommand,\renewcommand}
+% \DoNotIndex{\expandafter,\csname,\endcsname,\relax,\protect}
+% \DoNotIndex{\Huge,\huge,\LARGE,\Large,\large,\normalsize}
+% \DoNotIndex{\small,\footnotesize,\scriptsize,\tiny}
+% \DoNotIndex{\normalfont,\bfseries,\slshape,\interlinepenalty}
+% \DoNotIndex{\hfil,\par,\hskip,\vskip,\vspace,\quad}
+% \DoNotIndex{\centering,\raggedright}
+% \DoNotIndex{\c@secnumdepth,\@startsection,\@setfontsize}
+% \DoNotIndex{\ ,\@plus,\@minus,\p@,\z@,\@m,\@M,\@ne,\m@ne}
+% \DoNotIndex{\@@par,\DeclareOperation,\RequirePackage,\LoadClass}
+% \DoNotIndex{\AtBeginDocument,\AtEndDocument}
+%
+% \IndexPrologue{\section*{索~~~~引}}
+% \GlossaryPrologue{\section*{修改记录}}
+% 
+% \title{ 西安电子科技大学\XDUstyle{} Beamer主题\thanks{Xidian University \XDUstyle Beamer Theme}}
+% \author{崔元顺\thanks{西安电子科技大学数学与统计学院2012级本科生}}
+% \date{\fileversion\ (\filedate)}
+% 
+% \maketitle\thispagestyle{empty}
+% \begin{abstract}
+% 本主题根据\href{http://news.xidian.edu.cn/zt/vis/index.htm}{西安电子科技大学VI系统}中演示文稿标准而制作，
+% 旨在帮助学校师生进行学术交流或其他需要演示文稿活动时，方便的使用\LaTeX{}制作含有学校特色的演示文稿。
+% \end{abstract}
+% 
+% \vspace*{2em}
+% \def\abstractname{免责声明}
+% \begin{abstract}
+% \noindent
+%  \begin{enumerate}
+%  \item 本主题在制作时借鉴了 The AAU Sidebar Beamer Theme，且遵守 \LaTeX{} Project Public  License，使用前请认真阅读协议内容。
+%  \item 本主题的制作过程参考\href{http://news.xidian.edu.cn/zt/vis/index.htm}{西安电子科技大学VI系统}，仅供\href{http://www.xidian.edu.cn}{西安电子科技大学}师生制作Beamer演示文稿使用。
+%  \item 本主题为作者个人制作，使用仅供参考，任何由于使用本主题而引起的任何问题均与本主题作者无关。
+%  \item 任何个人或组织以本主题为基础进行修改、扩展而生成的新的专用模板，请严格遵守 \LaTeX{}  Project Public License 协议。由于违犯协议而引起的任何纠纷争端均与本模板作者无关。
+%  \end{enumerate}
+% \end{abstract}
+% \clearpage
+% \thispagestyle{headings}
+% \begin{multicols}{2}[
+%   \setlength{\columnseprule}{.4pt}
+%   \setlength{\columnsep}{18pt}]
+%   \tableofcontents
+% \end{multicols}
+% \clearpage
+% \pagenumbering{arabic}
+% 
+% \section{写在前面}
+% 本主题是我校的VI系统公布后，本人一直想要制作的，由于2015年的事比较多，拖了很久才做出初代版本。在看到The AAU Sidebar Beamer Theme主题后，结合其比较有特色的导航栏生成了本版本的\XDUstyle{}主题。
+%
+% 鉴于初代版本的代码未加整理便进行了托管，特将其整理后进行了上传发布。
+%
+% \section{主题介绍}
+% 本主题专门为我校师生所写，发布主旨已在前面提到，不再赘述。
+% 
+% 在此，有关本模主题的使用方法以及相关注意事项，将尽可能地在本文中叙述；
+% 
+% \subsection{主题组成}
+% \begin{longtable}[c]{l|m{9cm}}
+% \caption{\XDUstyle{} 主题主要文件(夹)及功能介绍}\label{Tab:XDUstyleALL}\\
+% \hline
+% \textbf{文件（夹）} & \textbf{功能描述}\\\hline\hline
+% \endfirsthead
+% \multicolumn{2}{l}{(续表)}\\
+% \hline
+% \textbf{文件（夹）} & \textbf{功能描述}\\\hline\hline
+% \endhead
+% \hline
+% \multicolumn{2}{c}{接下页$\cdots$}
+% \endfoot
+% \hline
+% \endlastfoot
+% 
+% XDUstyle.dtx & 主题宏包、说明文档以及主题驱动文件的混排文件\\
+% Demo.tex & 主题测试文档\\
+% XDUtheme/ & 主题相关矢量图存储文件夹\\
+% logo\_xdred.pdf & 西电校徽及校名logo（西电红）\\
+% logo\_xdblue.pdf & 西电校徽及校名logo（西电蓝）\\
+% Image/ & 图片存储文件夹，避免与主题图片混淆\\
+% MakeThemeManual.bat & 生成主题与用户手册脚本\\
+% MakeDemo.bat & 编译测试样例脚本\\
+% Clean.bat & 编译过程中间文件清理Windows脚本\\
+% Makefile & Linux \& Mac OS脚本\\
+% \textbf{XDUstyle.pdf} & 用户手册（本文档）\\
+% \end{longtable}
+% \textbf{注：}使用前，请仔细阅读\textbf{XDUstyle.pdf}，即本文档。
+% 
+% \subsection{使用前的准备}
+% 目前为止，本主题不需要依赖太多额外宏包，但 \pkg{tikz} 和 \pkg{calc} 宏包必须要有。
+% 
+% \section{如何提问}
+% 这一节本想只介绍如何联系作者本人解决问题呢，后来想想，肯定忙不过来就算了。还是将 \XDUstyle{} 和 \LaTeX{} 本身的疑问分开来叙述比较妥当。
+% \subsection[关于XDUstyle主题的疑问]{关于\XDUstyle{} 模板的疑问}
+% 使用本模板的过程中，如有任何关于本主题的疑问或是不懂之处可通过以下渠道联系作者本人：
+% \begin{itemize}
+% \item 新浪微博：\href{http://weibo.com/StickCui}{I-am-13}. 或手机扫描以下二维码私信作者。
+% 
+% \begin{center}
+% \begin{pspicture}(1.5in,1.5in)
+% \psbarcode{http://weibo.cn/qr/userinfo?uid=3024285285}{includetext guardwhitespace width=1.5 includetext guardwhitespace height=1.5 eclevel=H}{qrcode}
+% \end{pspicture}
+% \end{center}
+% 
+% \item 邮箱：\href{mailto:Stick\_Cui@163.com}{Stick\_Cui@163.com}
+% \end{itemize}
+% 就说上面两个吧，知道作者QQ的童鞋还可以直接私聊。
+% 
+% \subsection[关于LaTeX的疑问]{关于\LaTeX{} 的疑问}
+% 
+% 使用\LaTeX{} 排版写作的过程不是一帆风顺的。一个完整的文章往往需要几十上百次，有的甚至上千次的编译调试才能完成。
+% 
+% 中间碰到的任何问题都有可能把写作人绊住。因为不是所有问题都能单独去解决的，这时就需要去上网检索解决方案，但不是所有检索到的解决方案都是适用的，有些可能已过时。这就需要写作人一一辨别、尝试。
+% 
+% 在这里作者给大家提几条网上检索的工具：
+% \begin{itemize}
+% \item 谷歌搜索: \href{https://www.google.com}{https://www.google.com}
+% 
+% 这个一般国内用户无法使用，原因不提。但无疑它是最好的，有能力科学上网的用户可以选择它，如何检索不提了。
+% 
+% \item 知乎: \href{http://www.zhihu.com}{http://www.zhihu.com}
+% 
+% 知乎里面的\textbf{\LaTeX{}} 话题以及\textbf{\LaTeX{} 排版与设计}话题下有很多关于排版难题以及技巧的高质量答案。这方面领域的牛人有：\href{http://www.zhihu.com/people/qinglee}{李清}、\href{http://www.zhihu.com/people/li-a-ling}{李阿玲}\footnote{本名：马起园，男，pTeX-ng开发者}、\href{http://www.zhihu.com/people/liu-haiyang}{刘海洋}、\href{http://www.zhihu.com/people/LiamHuang}{孟晨}等。
+% 
+% \item 百度：这个不给链接了，也不多解释了。
+% \end{itemize}
+% 
+% \section{使用模板}
+% \subsection{如何编译}\label{SubSec:HowToMake}
+% \subsubsection{Windows用户}
+% 主题项目里已经列出了脚本：\\
+% 首先双击 MakeThemeManual.bat 脚本，生成主题和用户手册；然后双击 MakeDemo.bat 脚本生成测试 Beamer 文件预览\footnote{如编译后有些索引标志位置不准确，请多编译几次。}；最后双击 Clean.bat 清理编译过程的中间文件。
+%
+% \subsubsection{Linux \& Mac OS用户}
+% 首先运行下面命令生成主题和用户手册；
+% \begin{shell}
+% $ make thememanual
+% \end{shell}
+%
+% 然后运行下面命令生成测试 Beamer 文件预览；
+% \begin{shell}
+% $ make xelatex
+% \end{shell}
+% 
+% 最后运行下面命令清理编译过程的中间文件。
+% \begin{shell}
+% $ make clean
+% \end{shell}
+%
+% \subsection{可选参数}
+% 可选参数部分比较多，目前时间有限，先列举最可能用到的三个，有时间有精力了，再详细讲解其他参数的功能（部分暂时无效或需要依赖其他参数）。
+% \begin{itemize}
+%  \item \textbf{sidebar}：插入导航栏
+%  \item \textbf{xdblue}：将主题配色改为西电蓝风格
+%  \item \textbf{english}：图表等标题为英文
+% \end{itemize}
+%
+% \section{致谢}
+% 感谢The AAU Sidebar Beamer Theme的作者。感谢我自己，竟然能挤出这么多时间。人啊，就得逼自己一下。还要感谢昌旭同学，让我有信心厚着脸皮把该项目公布出来。
+% 
+% \StopEventually{\PrintChanges\PrintIndex}%
+% \section{实现细节}
+% \subsection{主题主文件部分}
+% 导入必要宏包
+%    \begin{macrocode}
+%<*xdustyle>
+\def\XDUstyle{X\kern -.1667em\lower .5ex\hbox {D}\kern -.125emU\textit{style}{}}
+\RequirePackage{tikz}
+\usetikzlibrary{external}
+\RequirePackage{calc}
+%    \end{macrocode}
+% 主题选项
+%    \begin{macrocode}
+\DeclareOptionBeamer{width}{\PassOptionsToPackage{width=#1}{beamerouterthemeXDUstyle}}
+\DeclareOptionBeamer{hideothersubsections}
+                    {\PassOptionsToPackage{hideothersubsections}
+					                      {beamerouterthemeXDUstyle}}
+\DeclareOptionBeamer{hideallsubsections}
+                    {\PassOptionsToPackage{hideallsubsections}
+					                      {beamerouterthemeXDUstyle}}
+\DeclareOptionBeamer{hidetitle}
+                    {\PassOptionsToPackage{hidetitle}{beamerouterthemeXDUstyle}}
+\DeclareOptionBeamer{hideauthor}
+                    {\PassOptionsToPackage{hideauthor}{beamerouterthemeXDUstyle}}
+\DeclareOptionBeamer{hideinstitute}
+                    {\PassOptionsToPackage{hideinstitute}{beamerouterthemeXDUstyle}}
+\DeclareOptionBeamer{shownavsym}{\PassOptionsToPackage{shownavsym}{beamerouterthemeXDUstyle}}
+
+\DeclareOptionBeamer{xdred}{%
+  \PassOptionsToPackage{xdred}{beamercolorthemeXDUstyle}%
+  \PassOptionsToPackage{xdred}{beamerinnerthemeXDUstyle}%
+  \PassOptionsToPackage{xdred}{beamerouterthemeXDUstyle}%
+  }
+\DeclareOptionBeamer{xdblue}{%
+  \PassOptionsToPackage{xdblue}{beamercolorthemeXDUstyle}%
+  \PassOptionsToPackage{xdblue}{beamerinnerthemeXDUstyle}%
+  \PassOptionsToPackage{xdblue}{beamerouterthemeXDUstyle}%
+  }
+\DeclareOptionBeamer{english}{%
+  \PassOptionsToPackage{english}{beamerinnerthemeXDUstyle}%
+  }
+\DeclareOptionBeamer{sidebar}{%
+  \PassOptionsToPackage{sidebar}{beamercolorthemeXDUstyle}%
+  \PassOptionsToPackage{sidebar}{beamerinnerthemeXDUstyle}%
+  \PassOptionsToPackage{sidebar}{beamerouterthemeXDUstyle}%
+  }
+\ProcessOptionsBeamer
+%    \end{macrocode}
+% 特殊设置
+%    \begin{macrocode}
+\mode<presentation>
+{
+  \useinnertheme{XDUstyle}
+  \useoutertheme{XDUstyle}
+  \usecolortheme{XDUstyle}
+}%end of beamer specific options
+
+\mode<all>
+%</xdustyle>
+%    \end{macrocode}
+% \subsection{主题配色文件部分}
+% 参数设置
+%    \begin{macrocode}
+%<*xducolorstyle>
+\DeclareOptionBeamer{xdred}{\def\beamer@xducolor{xdred}}%缺省默认
+\DeclareOptionBeamer{xdblue}{\def\beamer@xducolor{xdblue}}
+\DeclareOptionBeamer{sidebar}{\def\beamer@xdusidebar{true}}%缺省无
+\ProcessOptionsBeamer
+
+\def\beamer@xducolorblue{xdblue}
+%    \end{macrocode}
+% 特殊设置，颜色设置。
+%    \begin{macrocode}
+\mode<presentation>
+{
+  \ifx\beamer@xducolor\beamer@xducolorblue%
+    \definecolor{beamer@barcolor}{RGB}{38,81,107}% 冷色系辅助色
+    \definecolor{beamer@headercolor}{RGB}{0,65,130}% xdblue
+    \definecolor{beamer@normaltextcolor}{RGB}{0,0,0}% balck
+  \else%
+    \definecolor{beamer@barcolor}{RGB}{180,76,76}% 暖色系辅助色
+    \definecolor{beamer@headercolor}{RGB}{175,33,37}% xdred
+    \definecolor{beamer@normaltextcolor}{RGB}{0,0,0}% black
+  \fi%
+  
+  \setbeamercolor{structure}{fg=beamer@headercolor}
+  \setbeamercolor{normal text}{fg=beamer@normaltextcolor,bg=white}
+  \setbeamercolor{frametitle}{fg=white,bg=beamer@headercolor}
+  \ifx\beamer@xdusidebar\undefined%
+    {}%
+  \else%
+    \setbeamercolor{XDUsidebar}{fg=gray!50,bg=white}%
+  \fi%
+}%end of beamer specific options
+
+\mode<all>
+%</xducolorstyle>
+%    \end{macrocode}
+% \subsection{内部主题文件部分}
+% 必要宏包
+%    \begin{macrocode}
+%<*xduinnerstyle>
+\RequirePackage{tikz}
+\usetikzlibrary{external}
+%    \end{macrocode}
+% 参数设置
+%    \begin{macrocode}
+\DeclareOptionBeamer{xdred}{\def\beamer@xducolor{xdred}}
+\DeclareOptionBeamer{xdblue}{\def\beamer@xducolor{xdblue}}
+\DeclareOptionBeamer{sidebar}{\def\beamer@sidebar{true}}
+\DeclareOptionBeamer{english}{\def\beamer@english{true}}
+\ProcessOptionsBeamer
+
+\newlength{\beamer@plainpagewidth}
+\def\beamer@xducolorblue{xdblue}
+%    \end{macrocode}
+% 特殊设置
+%    \begin{macrocode}
+\mode<presentation>
+{
+%    \end{macrocode}
+% 标题页设置
+%    \begin{macrocode}
+\setbeamertemplate{title page}{%
+	{}\vspace*{\baselineskip}
+    \ifx\beamer@sidebar\undefined%
+      \setlength{\beamer@plainpagewidth}{\textwidth}
+    \else%
+      \setlength{\beamer@plainpagewidth}{\textwidth+\beamer@leftsidebar}%
+      \hskip-\beamer@leftsidebar%
+    \fi%
+    \begin{minipage}[c][\textheight][c]{\beamer@plainpagewidth}
+	  \ifx\beamer@xducolor\beamer@xducolorblue%
+	    \includegraphics[width=4cm]{XDUtheme/logo_xdblue}%
+	  \else%
+	    \includegraphics[width=4cm]{XDUtheme/logo_xdred}%
+	  \fi%
+      \vfill
+      \centering
+      {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}
+
+      {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle}\vspace*{\baselineskip}
+
+      \begin{beamercolorbox}[wd=\beamer@plainpagewidth,center,sep=\baselineskip]{frametitle}%
+        {\usebeamerfont{author}\insertauthor}\vspace*{\baselineskip}
+        
+        {\usebeamerfont{institute}\insertinstitute}\vspace*{\baselineskip}
+		
+		{\usebeamerfont{date}\insertdate}\vspace*{\baselineskip}
+      \end{beamercolorbox}\vspace*{\baselineskip}
+	  \vfill
+	  {}\vspace*{\baselineskip}
+    \end{minipage}
+  }
+%    \end{macrocode}
+% 结尾页设置
+%    \begin{macrocode}
+\defbeamertemplate{final page}{text}[1]{%
+    {}\vspace*{\baselineskip}
+    \ifx\beamer@sidebar\undefined%
+      \setlength{\beamer@plainpagewidth}{\textwidth}
+    \else%
+      \setlength{\beamer@plainpagewidth}{\textwidth+\beamer@leftsidebar}%
+      \hskip-\beamer@leftsidebar%
+    \fi%
+    \begin{minipage}[c][\textheight][c]{\beamer@plainpagewidth}
+	\ifx\beamer@xducolor\beamer@xducolorblue%
+	    \includegraphics[width=4cm]{XDUtheme/logo_xdblue}%
+	  \else%
+	    \includegraphics[width=4cm]{XDUtheme/logo_xdred}%
+	  \fi%
+	  \vfill
+      \centering
+	  \vspace*{-2\baselineskip}
+      \begin{beamercolorbox}[wd=\textwidth,center,sep=2\baselineskip]{frametitle}
+        #1
+      \end{beamercolorbox}
+      \vfill
+      {}\vspace*{\baselineskip}
+    \end{minipage}
+  }
+  \newcommand{\finalpage}[1]{%
+    \setbeamertemplate{final page}[text]{#1}
+    \usebeamertemplate{final page}
+  }
+%    \end{macrocode}
+% 设置背景，采用自定义命令形式，作用于底层
+%    \begin{macrocode}
+  \newcommand{\xdbg}{
+    \setbeamertemplate{background}{% 设置背景
+      \tikzexternaldisable
+      \begin{tikzpicture}[overlay]
+        \fill[structure.fg] (0,-\paperheight+3ex) rectangle (2ex,-\paperheight+4ex);
+        \fill[structure.fg] (0ex,-\paperheight+5ex) rectangle (2ex,-\paperheight+6ex);
+        \fill[structure.fg] (0ex,-\paperheight+7ex) rectangle (2ex,-\paperheight+8ex);
+        \fill[structure.fg] (0ex,-\paperheight+9ex) rectangle (2ex,-\paperheight+10ex);
+        \fill[structure.fg] (0ex,-\paperheight+11ex) rectangle (2ex,-\paperheight+12ex);
+        \end{tikzpicture}%
+      \tikzexternalenable
+      }
+	}
+%    \end{macrocode}
+% 对图表，参考文献等进行个性化设置，并做中文环境下的汉化操作
+%    \begin{macrocode}
+  \setbeamertemplate{bibliography item}[text]
+  \setbeamertemplate{caption}[numbered]
+  \setbeamercovered{transparent}
+  \ifx\beamer@english\undefined%
+    \renewcommand{\figurename}{图}
+    \renewcommand{\tablename}{表}
+    \renewcommand\refname{参考文献}
+  \fi%
+%    \end{macrocode}
+% Part页设置，分别对中英文环境下进行了个性化设置
+%    \begin{macrocode}
+\AtBeginPart{{\xdbg\frame[plain,noframenumbering]{%
+    {}\vspace*{\baselineskip}%
+	\ifx\beamer@sidebar\undefined%
+      \ifx\beamer@xducolor\beamer@xducolorblue%
+       \includegraphics[width=4cm]{XDUtheme/logo_xdblue}%
+      \else%
+       \includegraphics[width=4cm]{XDUtheme/logo_xdred}%
+  	  \fi%
+      \vspace*{-3\baselineskip}%
+      \partpage
+    \else%
+      \hskip-1.6\beamer@height%
+      \ifx\beamer@xducolor\beamer@xducolorblue%
+       \includegraphics[width=4cm]{XDUtheme/logo_xdblue}%
+      \else%
+       \includegraphics[width=4cm]{XDUtheme/logo_xdred}%
+  	  \fi%
+      \vspace*{-3\baselineskip}%
+      \hskip-1.6\beamer@height%
+      \partpage
+    \fi%
+   }}}
+  \defbeamertemplate*{part page}{sidebar theme}{%
+     \ifx\beamer@sidebar\undefined%
+      \setlength{\beamer@plainpagewidth}{\textwidth}
+    \else%
+      \setlength{\beamer@plainpagewidth}{\textwidth+\beamer@leftsidebar}%
+      \hskip-\beamer@leftsidebar%
+    \fi%
+    \begin{minipage}[c][\textheight][c]{\beamer@plainpagewidth}
+      \centering
+	  \ifx\beamer@english\undefined%
+        {\usebeamerfont{title}\usebeamercolor[fg]{author}{第 \Roman{part} 部分}}\vspace*{\baselineskip}
+	  \else%
+        {\usebeamerfont{title}\usebeamercolor[fg]{author}{Part \Roman{part}}}\vspace*{\baselineskip}
+      \fi%
+
+      {\usebeamerfont{title}\usebeamercolor[fg]{title}{\insertpart}}
+    \end{minipage}
+  }
+%    \end{macrocode}
+% 设置结束
+%    \begin{macrocode}
+}
+
+\mode<all>
+%</xduinnerstyle>
+%    \end{macrocode}
+% \subsection{外部主题文件部分}
+% 必要宏包部分
+%    \begin{macrocode}
+%<*xduouterstyle>
+\RequirePackage{tikz}
+\usetikzlibrary{external}
+\RequirePackage{calc}
+%    \end{macrocode}
+% 参数设置
+%    \begin{macrocode}
+\newlength{\beamer@width}
+\setlength{\beamer@width}{2cm}
+\DeclareOptionBeamer{width}{\beamer@width=#1}
+\DeclareOptionBeamer{sidebar}{\def\beamer@sidebar{true}}
+\DeclareOptionBeamer{hideothersubsections}[]{\beamer@nav@subsectionstyle{show/show/hide}}
+\DeclareOptionBeamer{hideallsubsections}[]{\beamer@nav@subsectionstyle{hide}}
+\DeclareOptionBeamer{hidetitle}{\def\beamer@hidetitle{true}}
+\DeclareOptionBeamer{hideauthor}{\def\beamer@hideauthor{true}}
+\DeclareOptionBeamer{hideinstitute}{\def\beamer@hideinst{true}}
+\DeclareOptionBeamer{shownavsym}{\def\beamer@shownavsym{true}}
+\DeclareOptionBeamer{xdred}{\def\beamer@xducolor{xdred}}
+\DeclareOptionBeamer{xdblue}{\def\beamer@xducolor{xdblue}}
+\DeclareOptionBeamer{sidebar}{\def\beamer@sidebar{true}}
+\ProcessOptionsBeamer
+
+\def\beamer@xducolorblue{xdblue}
+%the height of the header is 1.8 times the lineheight of the frame title
+\newlength{\beamer@height}
+\usebeamerfont{frametitle} %use the frame title font
+\setlength{\beamer@height}{1.8\baselineskip} 
+\reset@font %reset fonts
+%width of vertical bar separating the main text from the sidebar
+\newlength{\beamer@barwidth}
+% the bar width depends on the header height (by a factor of 7.5)
+\setlength{\beamer@barwidth}{2\beamer@height/15} 
+%    \end{macrocode}
+% 特殊设置
+%    \begin{macrocode}
+\mode<presentation>%
+{
+%    \end{macrocode}
+% 关于导航栏
+%    \begin{macrocode}
+\ifx\beamer@sidebar\undefined%
+    {}
+  \else%
+    \ifbeamercolorempty[fg]{XDUsidebar}{%
+      %define the sidebar color if it is not defined 
+	  %(which may be due to that the XDUsidebar color theme is not loaded)
+      \setbeamercolor{XDUsidebar}
+	       {use={structure,palette sidebar primary},fg=palette sidebar primary.fg,bg=structure.fg}
+    }{%
+      %
+    }
+  \setbeamersize{sidebar width left=\beamer@width}
+  \setbeamersize{text margin left=0.5cm,text margin right=0.5cm}
+  \fi%
+%    \end{macrocode}
+% 关于标题栏
+%    \begin{macrocode}
+\defbeamertemplate*{headline}{XDUstyle theme}{%
+    \XDUheaderbackground%
+  }
+%    \end{macrocode}
+% 帧标题模板设置
+%    \begin{macrocode}
+\defbeamertemplate*{frametitle}{XDUstyle theme}{%
+    \begin{minipage}[c][\beamer@height][c]{\textwidth-\beamer@height/2}
+	\begin{flushright}
+      {\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\insertframetitle\par}%
+      {\usebeamercolor[fg]{framesubtitle}\usebeamerfont{framesubtitle}\insertframesubtitle\par}%
+	\end{flushright}
+    \end{minipage}
+	\hfill%
+  }
+%    \end{macrocode}
+% 导航栏内容设置
+%    \begin{macrocode}
+\ifx\beamer@sidebar\undefined%
+  {}
+\else% 
+  %sidebar
+  \defbeamertemplate*{sidebar left}{XDUstyle theme}{%
+    \XDUsidebarbackground%
+    \vspace{\beamer@height}%
+    \vspace{2\baselineskip}\par%
+    \ifx\beamer@hidetitle\undefined% insert short title
+      \vspace{-\baselineskip}
+      \hspace{0.05\beamer@width}%
+      {% 
+        \usebeamercolor[fg]{title in sidebar}
+        \usebeamerfont{title in sidebar}%
+        \insertshorttitle[width={0.9\beamer@width},center,respectlinebreaks]
+      }%
+      \hspace{0.05\beamer@width}
+      \vspace{2\baselineskip}\par%
+    \fi
+    \ifx\beamer@hideauthor\undefined% insert short author
+      \vspace{-\baselineskip}
+      \hspace{0.05\beamer@width}%
+      {%
+        \usebeamercolor[fg]{author in sidebar}
+        \usebeamerfont{author in sidebar}%
+        \insertshortauthor[width={0.9\beamer@width},center,respectlinebreaks]
+      }
+      \hspace{0.05\beamer@width}
+      \vspace{\baselineskip}\par%
+    \fi
+    \insertverticalnavigation{\beamer@width}%
+    \strut\vfill%
+    \ifx\beamer@hideinst\undefined% insert short institute
+      \vbox{\hspace{0.05\beamer@width}%
+      {%
+        \usebeamercolor[fg]{title in sidebar}
+        \usebeamerfont{subtitle in sidebar}%
+        \insertshortinstitute[width={0.9\beamer@width},center,respectlinebreaks]
+      }
+      \hspace{0.05\beamer@width}%
+      \vspace*{\baselineskip}
+      }%
+    \fi
+    \ifx\beamer@shownavsym\undefined% insert navigation symbols
+      %do nothing
+    \else
+      %
+    \fi
+  }
+  
+  % current section in the sidebar
+  \defbeamertemplate*{section in sidebar}{XDUstyle theme}{%
+    \vbox{%
+      \vskip1ex% add some extra space when inserting a new section
+      \sidebarnavitem{4pt}{section in sidebar}{%
+        \sidebarcurframe{\insertframenumber}%
+        \insertsectionhead
+      }
+    }
+  }
+
+  % all section in the sidebar but the current
+  \defbeamertemplate*{section in sidebar shaded}{XDUstyle theme}{%
+    \vbox{%
+      \vskip1ex% add some extra space when inserting a new section
+      \sidebarnavitem{4pt}{section in sidebar shaded}{\insertsectionhead}
+    }
+  }
+
+  % current subsection in the sidebar
+  \defbeamertemplate*{subsection in sidebar}{XDUstyle theme}{%
+    \sidebarnavitem{6pt}{subsection in sidebar}{
+      \sidebarcurframe{\insertframenumber}%
+      \insertsubsectionhead
+    }
+  }
+
+  % all subsection in the sidebar but the current
+  \defbeamertemplate*{subsection in sidebar shaded}{XDUstyle theme}{%
+    \sidebarnavitem{6pt}{subsection in sidebar shaded}{\insertsubsectionhead}
+  }
+
+  % current subsubsection in the sidebar
+  \defbeamertemplate*{subsubsection in sidebar}{XDUstyle theme}{%
+    \sidebarnavitem{8pt}{subsubsection in sidebar}{
+      \sidebarcurframe{\insertframenumber}%
+      \insertsubsubsectionhead
+    }  
+  }
+
+  % all subsubsection in the sidebar but the current
+  \defbeamertemplate*{subsubsection in sidebar shaded}{XDUstyle theme}{%
+    \sidebarnavitem{8pt}{subsubsection in sidebar shaded}{\insertsubsubsectionhead} 
+  }
+\fi%
+%    \end{macrocode}
+% 导航符号设置，暂未指定；
+%    \begin{macrocode}
+  \ifx\beamer@shownavsym\undefined% insert navigation symbols
+    \setbeamertemplate{navigation symbols}{%
+      %disable navigation symbols
+    }
+  \fi
+}
+%    \end{macrocode}
+% 标题栏背景绘制
+%    \begin{macrocode}
+\newcommand{\XDUheaderbackground}[0]{%
+  \tikzexternaldisable
+  \begin{tikzpicture}[overlay]
+    
+  
+    \coordinate (UC) at (\paperwidth,0); %upper right corner of the slide
+    \coordinate (LC) at (3ex+3.4cm,-\paperheight); %lower left corner of the slide
+    \coordinate (BS) at (\paperwidth,-\beamer@height+1ex); %start coordinate of the bar
+    \coordinate (BE) at (\beamer@width+\beamer@barwidth/2,-\paperheight); %end coordinate of the bar
+	\coordinate (BF) at (3ex+3.4cm,-\beamer@height);
+
+    \coordinate (IS) at (BS -| BE); %intersection
+	
+	\coordinate (XDL1) at (0,0);
+	\coordinate (XDR1) at (4ex,-\beamer@height/9);
+	\coordinate (XDL2) at (0,-2\beamer@height/9);
+	\coordinate (XDR2) at (4ex,-3\beamer@height/9);
+	\coordinate (XDL3) at (0,-4\beamer@height/9);
+	\coordinate (XDR3) at (4ex,-5\beamer@height/9);
+	\coordinate (XDL4) at (0,-6\beamer@height/9);
+	\coordinate (XDR4) at (4ex,-7\beamer@height/9);
+	\coordinate (XDL5) at (0,-8\beamer@height/9);
+	\coordinate (XDR5) at (4ex,-\beamer@height);
+	
+	\fill[gray!50] (BF) rectangle (BS);
+    {\usebeamercolor{frametitle}%
+      \draw[draw=none,fill=frametitle.bg] (UC) rectangle (IS -| LC);
+      \draw[draw=none,fill=frametitle.bg] (XDL1) rectangle (XDR1);
+	  \draw[draw=none,fill=frametitle.bg] (XDL2) rectangle (XDR2);
+	  \draw[draw=none,fill=frametitle.bg] (XDL3) rectangle (XDR3);
+	  \draw[draw=none,fill=frametitle.bg] (XDL4) rectangle (XDR4);
+	  \draw[draw=none,fill=frametitle.bg] (XDL5) rectangle (XDR5);
+    }
+    
+    \coordinate (logopos) at ([yshift=\beamer@height/2] IS);%coordinate of the logo
+	\ifx\beamer@xducolor\beamer@xducolorblue%
+      \node at (logopos) {\includegraphics[width=3cm]{XDUtheme/logo_xdblue}};
+	\else%
+      \node at (logopos) {\includegraphics[width=3cm]{XDUtheme/logo_xdred}};
+	\fi%
+  \end{tikzpicture}%
+  \tikzexternalenable
+}
+%    \end{macrocode}
+% 导航栏背景、标签、导航符号等绘制
+%    \begin{macrocode}
+\ifx\beamer@sidebar\undefined%
+  {}
+\else
+  % the fancy background in the sidebar
+  \newcommand{\XDUsidebarbackground}[0]{%
+    \tikzexternaldisable
+    \begin{tikzpicture}[remember picture,overlay]
+      \coordinate (BS) at (\paperwidth,-\beamer@height); %start coordinate of the bar
+	  \coordinate (DBS) at (\paperwidth,-\beamer@height-6.5ex);
+      \coordinate (BE) at (\beamer@width+\beamer@barwidth/2,-\paperheight); %end coordinate of the bar
+      \coordinate (IS) at (BS -| BE); %intersection
+	  \coordinate (DIS) at (DBS -| BE);
+      %draw the thick line
+      {\usebeamercolor{XDUsidebar}%
+        \draw[color=fg,line width=\beamer@barwidth] (IS) -- (BE);
+      }
+      %draw the circle with the total frame number
+      {\usebeamercolor{palette sidebar primary}%
+        \usebeamercolor{XDUsidebar}%
+        \usebeamerfont{subsection in sidebar}%
+        \node[fill=palette sidebar primary.bg,draw=XDUsidebar.fg,circle,very thick,minimum width=4mm] at ([yshift=2mm] BE) 
+		  {{\usebeamercolor[fg]{subsection in sidebar}\inserttotalframenumber}};
+		\node[fill=palette sidebar primary.bg,draw=XDUsidebar.fg,circle,very thick,minimum width=4mm] at ([yshift=2mm] DIS) 
+		  {{\usebeamercolor[fg]{subsection in sidebar}1}};
+      }
+    \end{tikzpicture}%
+    \tikzexternalenable
+  }
+  
+  % sidebar navigation item  
+  \newcommand{\sidebarnavitem}[3]{%
+    \begin{beamercolorbox}[wd=\beamer@width,leftskip=#1,rightskip=1ex plus1fil,vmode]{#2}
+      \vbox{}% insert a blank line
+      #3\par%
+      \vbox{}% insert a blank line
+      \vskip-1.5ex%
+    \end{beamercolorbox}
+  }
+  
+  % current frame number
+  \newcommand{\sidebarcurframe}[1]{%
+    \tikzexternaldisable
+    \begin{tikzpicture}[remember picture,overlay]
+    \coordinate (CS) at (0,0.8ex); % coordinate of the current section
+    \coordinate (CF) at (IS |- CS); % coordinate of the current frame number
+    {%
+      \usebeamercolor{palette sidebar primary}%
+      \usebeamercolor{XDUsidebar}%
+  %    \draw[color=bg,line width=\beamer@barwidth] (IS) -| (CF);
+      \node[fill=palette sidebar primary.bg,draw=XDUsidebar.fg,circle,minimum width=3.5mm,thick] at (CF) 
+	     {{\fontsize{4}{5}\selectfont{\usebeamercolor[fg]{subsection in sidebar}#1}}};
+    }
+    \end{tikzpicture}%
+    \tikzexternalenable
+  }
+\fi%
+%    \end{macrocode}
+% 设置结束
+%    \begin{macrocode}
+\mode<all>
+%</xduouterstyle>
+%    \end{macrocode}
+% 
+% \Finale
+%
+\endinput
